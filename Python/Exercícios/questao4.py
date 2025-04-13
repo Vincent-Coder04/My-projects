@@ -5,6 +5,6 @@ def calcular_pagamento(horas_trabalhadas, valor_hora):
     if horas_trabalhadas > 8:
         print("Hora extra registrada!")
 
-horas = float(input("Digite a quantidade de horas trabalhadas: "))
-valor = float(input("Digite o valor da hora: "))
-calcular_pagamento(horas, valor)
+horas_trabalhadas = float(input("Digite a quantidade de horas trabalhadas: "))
+valor_hora = float(input("Digite o valor da hora: "))
+calcular_pagamento(horas_trabalhadas, valor_hora) 
