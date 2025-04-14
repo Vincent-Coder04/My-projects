@@ -1,9 +1,10 @@
 def senha(password):
-    if password == 123: 
+  
+    if password == "senac123": 
       print("Entrada permitida!")
     else :
       print("Entrada Proibida, Senha incorreta")
       
-password = int(input("Digite a senha aqui:"))
+password = str(input("Digite a senha aqui:"))
 
 senha(password)  

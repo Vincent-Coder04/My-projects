@@ -1,5 +1,5 @@
 def calcular_imc(peso, altura):
-    imc = peso / (altura * 2)
+    imc = peso / (altura * altura)
     return imc
 
 def classificar_imc(imc):
@@ -18,5 +18,5 @@ altura = float(input("Digite sua altura em metros (ex: 1.75): "))
 imc = calcular_imc(peso, altura)
 classificacao = classificar_imc(imc)
 
-print(f"\nSeu IMC é: {imc:.2f}")
+print(f"Seu IMC é: {imc:.2f}")
 print(f"Classificação: {classificacao}")
