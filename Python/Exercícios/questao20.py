@@ -6,7 +6,7 @@ def tabuada_completa():
         for i in range(1, 11):
             resultado = numero * i 
             print(f"{numero} x {i} = {numero*i}")
-        repetir = input ("Deseja ver outra tabuada? (S/N)")
+        repetir = input ("Deseja ver outra tabuada? (s/qualuqer outro algarismo)")
         if repetir.lower() != "s":
             print("Encerrando...")
             break 
