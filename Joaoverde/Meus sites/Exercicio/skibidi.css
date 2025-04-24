@@ -1,0 +1,25 @@
+#nome{
+    background-color: #00d1b2;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+    
+#botao{
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 15px;
+}
+
+#hero{
+    height: 100px;
+    width: 100px;
+    background: linear-gradient(to left, #0026ff, #00ff00);
+    margin-top: 100px;
+    margin: 0 auto;
+    box-shadow:0 0 10px rgba(0, 0, 0, 0);
+}
