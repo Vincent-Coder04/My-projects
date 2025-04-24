@@ -1,0 +1,103 @@
+body {
+   font-family: Arial, sans-serif;
+   margin: 0;
+   padding: 0;
+   background-color: #bfe002;
+}
+
+.menu {
+   display: flex;
+   justify-content: center;
+   gap: 20px;
+   background-color: rgba(240, 14, 210, 0.863);
+   padding: 10px;
+
+}
+
+.menu a {
+   color: rgb(0, 255, 42);
+   text-decoration: none;
+   font-weight: bold;
+   padding: 5px 10px;
+   transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.menu a:hover {
+   text-decoration: underline;
+   color: rgb(0, 238, 255);
+}
+
+h1 {
+   text-align: center;
+   margin-top: 20px;
+}
+
+.perfil {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 20px;
+   padding: 20px;
+   flex-wrap: wrap;
+}
+
+.perfil img {
+   width: 200px;
+   height: auto;
+   border-radius: 10px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.texto {
+   max-width: 600px;
+   margin-top: 0;
+   font-size: 1.1em;
+   line-height: 1.5em;
+}
+
+form{
+   display: flex;
+   flex-direction: column;
+   width: 300px;
+   margin: auto;
+}      
+
+input, textarea{
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.bostão {
+   color: blue;
+   background-color: crimson;
+}
+
+.sussypussy{
+    margin-left: 1500px;
+    margin-top: -300px; 
+}
+
+.skibidi{ 
+      background-color: #f0f0f0; 
+      color: #333;
+      text-align: center;
+      padding: 20px;
+      border: 2px solid #ccc; 
+      border-radius: 8px; 
+      margin-top: 20px; 
+      width: 90%; 
+      margin-left: auto; 
+      margin-right: auto;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+      margin-top: 100px;
+      font-size: 20px;
+  }
+
+.projeto{
+   margin-left: 50px;
+}
+.lol{
+   margin-left: 50px;
+}
