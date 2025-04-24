@@ -5,6 +5,6 @@ def senha(password):
     else :
       print("Entrada Proibida, Senha incorreta")
       
-password = str(input("Digite a senha aqui:"))
+password = (input("Digite a senha aqui:"))
 
 senha(password)  
