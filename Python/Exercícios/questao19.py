@@ -6,7 +6,6 @@ def questao19():
  quantidade_consoantes = 0
 
  vogais = "aeiouAEIOU"
-
  for letra in palavra:
     if letra in vogais:
         quantidade_vogais += 1
