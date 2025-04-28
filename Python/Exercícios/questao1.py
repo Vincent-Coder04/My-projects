@@ -4,4 +4,6 @@ def pode_entrar_na_festa():
             print("Entrada permitida. Bem-vindo(a) à festa!")
         else:
             print("Desculpe, você não pode entrar. Entrada permitida apenas para maiores de 18 anos.")
+
+
 pode_entrar_na_festa()

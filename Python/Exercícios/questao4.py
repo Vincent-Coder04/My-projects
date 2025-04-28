@@ -3,8 +3,10 @@ def calcular_pagamento(horas_trabalhadas, valor_hora):
     print(f"Total do dia: R${total_dia}")
     
     if horas_trabalhadas > 8:
-        print("Hora extra registrada!")
+     print("Hora extra registrada!")
 
 horas_trabalhadas = float(input("Digite a quantidade de horas trabalhadas: "))
 valor_hora = float(input("Digite o valor da hora: "))
+print("Digite um número")
+
 calcular_pagamento(horas_trabalhadas, valor_hora) 

@@ -1,11 +1,11 @@
 def solicitar_idade():
-    while True: #Início do loop condicional - enquanto for verdade
+    while True: 
         idade = int(input("Digite sua idade:"))
 
-        if idade >= 0 and idade <=120: # Condição de repetição
+        if idade >= 0 and idade <=120: 
             print("Idade registrada: ", idade) 
-            break # Estrutura que indica condição de parada
+            break 
         else:
             print("Idade Inválida. Tente novamente!")
 
-solicitar_idade() # Chamada da função
+solicitar_idade() 
