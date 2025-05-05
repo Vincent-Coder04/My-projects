@@ -15,7 +15,7 @@ def cursonoite():
         print(f"{index}. {curso}.")
 
 def intersecao_conjuntos():
-    cursos_comum = cursos_manha & cursos_noite
+    cursos_comum = cursos_manha, cursos_noite
     print("Cursos ofertados na manhã e noite:")
     if cursos_comum:
         for index, curso in enumerate(sorted(cursos_comum), start=1):
@@ -41,6 +41,8 @@ def menu():
             elif opcao == 4:
                 print("Saindo...")
                 break
+            else:
+                print("Digite um número entre 1 e 4 por favor")
         except ValueError:
             print("Por favor, insira um número válido.")
 
