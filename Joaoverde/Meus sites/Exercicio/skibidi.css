@@ -58,10 +58,27 @@ h3, p {
   justify-content: center; 
   align-items: center;
   gap: 10px; 
+  margin-left: -1350px;
+  position: relative;
 }
 
 .footer-icons img {
   width: 50px;
   height: 50px;
   margin-top: 60px;
+  
+}
+
+#tralalelo {
+  position: absolute;
+  right: 0;
+  margin-top: -30px;
+  margin-right: 50px;
+  color: white;
+}
+
+#mabel{
+  margin-top: -15px;
+  position: fixed;
+  margin-left: -60px;
 }
