@@ -8,5 +8,6 @@ def cities():
     print("Cidades digitadas:")
     for index, cidade in enumerate(sorted(cidades), start=1):
         print(f"{index}. {cidade}") 
+    
     print(cidades)
 cities()
