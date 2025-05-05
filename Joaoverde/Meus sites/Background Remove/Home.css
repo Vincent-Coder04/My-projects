@@ -1,113 +1,111 @@
-.sussy {
-    width: 100%;
-    height: 150px;
-    background-color: aqua;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    border: 3px solid black;
+@font-face {
+    font-family: 'Jersey15';
+    src: url('fonts/jersey15.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+} 
+
+body{
+    background-color: grey;
+    margin: 0;
+    padding: 0;
 }
 
-#skibidi {
+.aquarectangle{
+    background-color: aqua;
+    width: 100%;
+    height: 140px;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    border: 3px solid black;
+    z-index: 1;
+  }
+
+#icon{
     width: 160px;
     height: auto;
     position: relative;
-    z-index: 100;
-    margin-top: 10px;
+    margin-top: 5px;
     cursor: pointer;
-}
-
-body {
-    background-color: grey;
-}
-
-@font-face {
-    font-family: 'Jersey15';
-    src: url('Jersey15-Regular.ttf') format('truetype');
-}
-
-.textogigante {
-    font-size: 8rem;
-    font-weight: bold;
-    color: blue;
     z-index: 2;
-    position: relative;
-    top: -50px;
+}
+
+#title{
+    font-size: 9rem;
     font-family: 'Jersey15', sans-serif;
-    margin-left: 500px;
-    margin-top: -100px;
+    color: rgba(0, 26, 255, 0.923);
+    margin-top: -150px;
+    z-index: 100;
+    position: absolute;
+    margin-left: 240px;
 }
 
-.maria {
-    width: 800px;
-    height: auto;
+#womam{
+    width: 600px;  
+    height: 360px;
+    position: absolute;  
+    margin-top: 170px;
+    margin-left: -120px;
 }
 
-.cem {
-   color: lawngreen;
-   font-size: 50px;
-   margin-left: 180px;
-   margin-top: 5px;
-   font-family: Arial, Helvetica, sans-serif;
+#belowthewomam{
+    font-size: 3rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(0, 245, 0);
+    margin-top: 390px;
+    margin-left: 100px;
 }
 
-.icones {
+.icons{
     display: flex;
-    justify-content: left;
-    align-items: center;
-    gap: 10px;
-    margin-top: 470px;
+    gap: 1px;
+    margin-left: 10px;
+    margin-top: 30px;
+    position: absolute;
 }
 
-#instagram {
-    margin-left: -23px;
+.icons img{
+      width: 70px;
+      height: 70px; 
+      object-fit: cover;
 }
 
-#facebook {
-    margin-left: -23px;
+#Youtube{
+    width: 91px;
+    height: 91px;
+    margin-top: -10px;
+    margin-left: -12px;
 }
 
-#verde {
-    height: 600px;
-    width: 800px;
-    background-color: greenyellow;
-    margin-left: 1000px;
-    margin-top: -480px;
+#xix{
+    height: 91px;
+    width: 91px;
+    margin-top: -10px;
 }
 
-.elipse {
-    width: 600px;
-    height: 190px;
-    background-color: blue;
+#insta{
+    width: 91px;
+    height: 91px;
+    margin-top: -10px;
+    margin-left: -6px;
+}
+
+#bluerectangle {
+    background: linear-gradient(to right, blue, cyan);
+    width: 700px;
+    height: 450px;
+    margin-top: -470px;
+    margin-left: 800px;
+    position: relative;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+}
+#ovalrectangle{
+    background-color: rgb(0, 255, 0);
     border-radius: 50%;
-    margin-left: 1100px;
-    margin-top: -550px;
-}
-
-.dracula {
-    color: white;
-    font-size: 4rem;
-    font-family: Arial, Helvetica, sans-serif;
-    margin-left: 790px;
-    margin-top: -920px;
-    white-space: nowrap;
-}
-
-.azulzinho {
-    color: cyan;
-    text-decoration: underline aquamarine;
-    margin-top: -1220px;    
-    margin-left: -530px;
-    font-size: 3rem;
-    font-family: Arial, Helvetica, sans-serif;
-    white-space: nowrap;
-}
-
-#add {
-    white-space: nowrap;
-    margin-left: -650px;
-    font-size: 3rem;
-    margin-top: 10px;
-    font-family: Arial, Helvetica, sans-serif;
+    height: 180px;
+    width: 600px;
+    margin-left: 850px;
+    margin-top: -420px;
+    position: absolute;
 }

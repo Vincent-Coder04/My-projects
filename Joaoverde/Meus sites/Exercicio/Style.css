@@ -6,10 +6,11 @@
 
 body{
     font-family: Cambria;
-    background-color: rgb(255, 0, 221);
     color: #333;
     text-align: center;
     padding: 20px;
+    background-color: deep;
+    
 }
  header{
     background-color: #3498db;
@@ -66,3 +67,4 @@ footer{
     font-size: 14px;
     color: gray;
 }
+

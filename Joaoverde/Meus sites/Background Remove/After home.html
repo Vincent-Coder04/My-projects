@@ -3,35 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="After home.css">
-    <title>Background Remove</title>
-    <link rel="icon" href="C:\Users\Senac\Downloads\Joaoverde\Meus sites\Background Remove\logo.png" type="image/png">
+    <title>Background Remover</title>
+
+    <!-- Estilo principal -->
+    <link rel="stylesheet" href="Home.css">
+
+    <!-- Ícone do site -->
+    <link rel="icon" href="imagens/logo.png" type="image/png">
 </head>
 <body>
+    <!-- Barra superior -->
     <div class="sussy">
-   <a href="Home.html">
-    <img id="skibidi" src="logo_para_um_site_de_removedor_de_fundo-removebg-preview 1.png" alt="logo">
-   </a>
-    <div class="textogigante">Background Remove</div>
-    <section class="icones">
-        <a href="https://youtube.com/shorts/tzD9OxAHtzU?si=sWZf4vFLWpk_HMvH" target="_blank" rel="noopener noreferrer">
-        <img src="C:\Users\Senac\Downloads\Joaoverde\Meus sites\Background Remove\download (4) (2) 1.png" alt="youtube">
-        </a>
-      <a href="https://www.estadao.com.br/emais/gente/conta-x-de-kanye-west-e-desativada-apos-dias-de-postagens-antissemitas-nprec/?srsltid=AfmBOookFPatJffbYupyk4Ncu7Na420U00n2V4_NmCgjnwb4b-KZWkLG"  target="_blank" rel="noopener noreferrer">
-       <img src="C:\Users\Senac\Downloads\Joaoverde\Meus sites\Background Remove\download (2) 1.png" alt="x">
-      </a>
-         <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.memedroid.com%2Fmemes%2Fdetail%2F1990460&psig=AOvVaw12uNQiBBUVK2mCDDLLHwI3&ust=1743873826233000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCNip-7HyvowDFQAAAAAdAAAAABAi" target="_blank" rel="noopener noreferrer">
-           <img id="instagram" src="C:\Users\Senac\Downloads\Joaoverde\Meus sites\Background Remove\icon-Instagram-redondo-colorido-removebg-preview 1.png" alt="instagram">
-         </a>
-          <a href="https://www.facebook.com/kanyewest/?locale=pt_BR" target="_blank" rel="noopener noreferrer">
-           <img id="facebook" src="C:\Users\Senac\Downloads\Joaoverde\Meus sites\Background Remove\download (1) 1.png" alt="facebook">
-          </a>
-    </section>
-    <div id="retangulo"></div>
-    <div id="retangulao"></div>
-    <h1 class="normal">Normal</h1>
-    <img class="mais" src="C:\Users\Senac\Downloads\Joaoverde\Meus sites\Background Remove\3e28cc5c-092d-46b7-b957-13b2b0c92bbb-cover.png" alt="mais ou menos">
-    <div id="retangulinho"></div>
-    <h1 id="download">Download</h1>
+        <img 
+            id="skibidi" 
+            src="imagens/logo_para_um_site_de_removedor_de_fundo-removebg-preview1.png" 
+            alt="logo"
+        >
+        <div class="textogigante">Background Remove</div>
+    </div>
+
+    <!-- Imagem principal -->
+    <img 
+        class="maria" 
+        src="imagens/Captura_de_tela_2025-03-28_170754.png" 
+        alt="woman"
+    >
+
+    <!-- Texto promocional -->
+    <h1 class="cem">100% free and fast</h1>
+
+    <!-- Elementos visuais decorativos -->
+    <div id="verde"></div>
+    <div class="elipse"></div>
+
+    <!-- Rodapé com ícones e textos -->
+    <footer>
+        <section class="icones">
+            <a href="https://youtube.com/shorts/tzD9OxAHtzU?si=sWZf4vFLWpk_HMvH" target="_blank" rel="noopener noreferrer">
+                <img src="imagens/youtube.png" alt="YouTube">
+            </a>
+            <a href="https://www.estadao.com.br/emais/gente/conta-x-de-kanye-west-e-desativada-apos-dias-de-postagens-antissemitas-nprec/" target="_blank" rel="noopener noreferrer">
+                <img src="imagens/x.png" alt="X (Twitter)">
+            </a>
+            <a href="https://www.memedroid.com/memes/detail/1990460" target="_blank" rel="noopener noreferrer">
+                <img id="instagram" src="imagens/instagram.png" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com/kanyewest/?locale=pt_BR" target="_blank" rel="noopener noreferrer">
+                <img id="facebook" src="imagens/facebook.png" alt="Facebook">
+            </a>
+
+            <!-- Frases decorativas -->
+            <h1 class="dracula">Drag an image here</h1>
+            <h1 class="azulzinho">Insert a picture here</h1>
+        </section>
+    </footer>
+
+    <!-- Script para recarregar ao clicar no logo -->
+    <script>
+        const logo = document.getElementById('skibidi');
+        logo.addEventListener('click', function () {
+            location.reload();
+        });
+    </script>
 </body>
 </html>
