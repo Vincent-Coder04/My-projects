@@ -9,10 +9,9 @@ def sussypussy():
             print(f"{pais} está presente no conjunto.")
         else:
             print(f"{pais} não está presente no conjunto.")
-
+    
 southamerica()
 sussypussy()
-
 class carro():
     def skibidi():
         input("Skibidi aqui")
