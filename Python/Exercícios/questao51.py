@@ -1,88 +1,123 @@
 '''
-1. (Conceitual)
-O que é uma classe em Python?
-A) Um tipo especial de lista = X
-B) Um bloco de código com variáveis globais = X
-C) Um molde para criar objetos com características e comportamentos = ✔
-D) Um tipo de função com múltiplos parâmetros = X
+Exercício 1 : Cadastro de Livros
+Descrição:
+Crie uma classe LivroDAO que:
+ Crie uma tabela livros com os campos: id, titulo e autor
+ Permita inserir livros com título e autor
+ Liste todos os livros cadastrados no banco
 '''
-'''
-2. (Conceitual)
-O que são objetos em Programação Orientada a Objetos?
-A) Variáveis com nomes maiores = X
-B) Instâncias criadas a partir de uma classe = ✔
-C) Funções que não recebem parâmetros = X
-D) Qualquer estrutura de repetição = X
-'''
-'''
-3. (Prática)
-Dada a classe abaixo: 
-class Pessoa:
-def __init__(self, nome):
-self.nome = nome
-Qual das opções cria corretamente um objeto dessa classe?
-A) Pessoa = (&quot;João&quot;) = X
-B) pessoa = Pessoa.nome(&quot;João&quot;) = X
-C) pessoa = Pessoa(&quot;João&quot;) = ✔
-D) pessoa = Pessoa[&quot;João&quot;] = X
-'''
-'''
-4. (Prática)
-Em uma classe, o que representa o self?
-A) A classe como um todo = X
-B) Um valor fixo definido no construtor = ✔
-C) A própria instância (objeto) sendo criada ou manipulada = X
-D) Um comando para sair do método = X
-'''
-'''
-5. (Código - Preenchimento)
-Complete o código abaixo para que ele funcione corretamente:
-class Carro:
-def __init__(self, modelo):
-self.modelo = modelo
-meu_carro = ____________
-print(meu_carro.modelo)
-'''
+import sqlite3
 
+class ConexaoBanco:
+    def __init__(self, nome_banco="Livros.db"):
+        self.conexao = sqlite3.connect(nome_banco)
+        self.cursor = self.conexao.cursor()
+
+    def fechar(self):
+        self.conexao.close()
+
+class AlunoDAO(ConexaoBanco):
+    def criar_tabela(self):
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS Livros (
+                id INTEGER PRIMARY KEY,
+                nome TEXT NOT NULL,
+                idade INTEGER NOT NULL
+            )
+        ''')
+        self.conexao.commit()
+
+    def inserir_aluno(self, nome, titulo, autor):
+        self.cursor.execute('''
+            INSERT INTO Livros (nome, idade) VALUES (?, ?)
+        ''', (nome, titulo, autor))
+        self.conexao.commit()
+        print(f"Aluno {nome} inserido com sucesso!") 
+
+    def listar_alunos(self):
+        self.cursor.execute('SELECT * FROM alunos')
+        livros = self.cursor.fetchall()
+        print("Lista de alunos: ")
+        for livro in livros:
+            print(f"ID : {livro[0]} - Nome: {livro[1]} - Idade:{livro[2]}")
+
+def menu():
+    dao = AlunoDAO()
+    dao.criar_tabela()
+
+    while True:
+        print("1 - Inserir Livro")
+        print("2 - Listar Livros")
+        print("3 - Sair")
+        opcao = input("Escolha uma opção:")
+        if opcao =="1":
+         try:
+            nome = input("Digite o nome do Livro: ")
+            titulo = input("Digite o nome do titulo do livro: ")
+            autor = input("Digite o nome do autor: ")
+
+            dao.inserir_aluno()
+         except ValueError:
+           print("Digite um valor válido")
+           continue
+        elif opcao == "2":
+            dao.listar_alunos()
+        elif opcao == "3":
+            dao.fechar()
+            print("Encerrando...")
+            break
+        else:
+            print("Digite um valor entre 1 a 3\n")
+            
+menu()
 '''
-6. (Conceitual)
-Assinale a alternativa que melhor representa a diferença entre classe e objeto:
-A) Objeto é a teoria, classe é a prática = X
-B) Classe é a definição, objeto é a instância dessa definição = ✔
-C) Ambos são exatamente a mesma coisa = X
-D) Classe serve só para criar funções e não tem atributos = X
+Exercício 2 : Cadastro de Cursos com Nível
+Descrição:
+Implemente uma classe CursoDAO que:
+ Crie a tabela cursos com: id, nome, nivel (iniciante, intermediário,
+avançado)
+ Insira 3 cursos diferentes
+ Liste todos os cursos disponíveis
 '''
 '''
-7. (Código - Compreensão)
-O que será impresso ao executar o seguinte código?
-class Animal:
-def __init__(self, nome):
-self.nome = nome
-a = Animal(&quot;Cachorro&quot;)
-print(a.nome)
+Exercício 3 : Inserção de Professores
+Descrição:
+Crie uma classe ProfessorDAO para:
+ Criar a tabela professores com os campos id, nome, disciplina
+ Receber pelo menos 2 cadastros via input
+ Exibir todos os professores com print(f&quot;{nome} ministra {disciplina}&quot;)
 '''
 '''
-8. (Prática)
-Qual é a palavra-chave utilizada para definir uma classe em Python?
-A) new = X
-B) function = X
-C) class = ✔
-D) define = X
+Exercício 4 : Cadastro de Clientes
+Descrição:
+Implemente uma classe ClienteDAO com os métodos:
+ criar_tabela() com os campos: id, nome, email
+ inserir_cliente() via input
+ listar_clientes() exibindo todos com formatação clara
 '''
 '''
-9. (Reflexão/Criação)
-Explique com suas palavras o que significa instanciar uma classe.
-Dê um exemplo prático com o nome de uma classe fictícia.
+Exercício 5 : Análise de Código (Criação de Tabela)
+Descrição:
+Analise o trecho de código abaixo:
+
+class AnimalDAO:
+def criar_tabela(self):
+self.cursor.execute(&#39;&#39;&#39;
+CREATE TABLE animais (
+nome TEXT,
+especie TEXT
+)
+&#39;&#39;&#39;)
+Pergunta:
+Quais dois erros ou problemas você consegue identificar nesse código?
+(Dica: pense na estrutura da tabela e na classe)
 '''
 '''
-10. (Análise de código com erro proposital)
-Veja o código abaixo. Qual é o erro presente nele?
-class Aluno:
-def __init__(nome, idade):
-nome = nome
-idade = idade
-A) Está tudo certo = X
-B) A classe deveria chamar ClasseAluno = X
-C) Faltou o self nos parâmetros e nos atributos = ✔
-D) O nome idade deveria ser string = X
+Exercício 6 : Identifique o erro
+Descrição:
+Veja o código abaixo e diga por que ele falha:
+self.cursor.execute(&quot;INSERT INTO alunos (nome, idade) VALUES (?, ?)&quot;,
+&quot;Carlos&quot;, 18)
+Pergunta:
+O que precisa ser corrigido nessa linha para que o comando funcione
 '''

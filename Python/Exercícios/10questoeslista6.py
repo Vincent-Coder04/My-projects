@@ -30,8 +30,8 @@ D) pessoa = Pessoa[&quot;João&quot;] = X
 4. (Prática)
 Em uma classe, o que representa o self?
 A) A classe como um todo = X
-B) Um valor fixo definido no construtor = ✅ 
-C) A própria instância (objeto) sendo criada ou manipulada = X
+B) Um valor fixo definido no construtor = X
+C) A própria instância (objeto) sendo criada ou manipulada = ✅
 D) Um comando para sair do método = X
 '''
 '''
@@ -84,7 +84,7 @@ D) define = X
 9. (Reflexão/Criação)
 Explique com suas palavras o que significa instanciar uma classe.
 Dê um exemplo prático com o nome de uma classe fictícia.
-R:Instanciar uma classe é pegar valores e interligar eles com o comportamento de uma classe estabelecida, como se fosse um exemplo pratico utilizando coisas definidas em uma classe
+R:Instanciar uma classe é pegar valores e interligar eles com o comportamento de uma classe estabelecida, como se fosse um exemplo pratico utilizando coisas definidas em uma classe, geralmente usando objetos.
 Exemplo:
 '''
 class Continentes:

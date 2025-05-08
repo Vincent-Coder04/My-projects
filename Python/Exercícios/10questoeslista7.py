@@ -31,8 +31,8 @@ p.saudacao()
 O que acontece se você tentar acessar um atributo que não existe em um objeto?
 A) O Python ignora e segue o código = X
 B) Ele cria o atributo automaticamente = X
-C) Ocorre um erro: AttributeError = X
-D) O atributo é definido como None = ✅
+C) Ocorre um erro: AttributeError = ✅
+D) O atributo é definido como None = X
 '''
 '''
 5. (Código - Completar)
