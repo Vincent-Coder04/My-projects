@@ -16,59 +16,70 @@ class ConexaoBanco:
     def fechar(self):
         self.conexao.close()
 
-class AlunoDAO(ConexaoBanco):
+class LivroDAO(ConexaoBanco):
     def criar_tabela(self):
         self.cursor.execute('''
-            CREATE TABLE IF NOT EXISTS Livros (
-                id INTEGER PRIMARY KEY,
-                nome TEXT NOT NULL,
-                idade INTEGER NOT NULL
+                CREATE TABLE IF NOT EXISTS Livros (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                titulo TEXT NOT NULL,
+                autor TEXT NOT NULL
             )
         ''')
         self.conexao.commit()
 
-    def inserir_aluno(self, nome, titulo, autor):
+    def inserir_livro(self, titulo, autor):
         self.cursor.execute('''
-            INSERT INTO Livros (nome, idade) VALUES (?, ?)
-        ''', (nome, titulo, autor))
+            INSERT INTO Livros (titulo, autor) VALUES (?, ?)
+        ''', (titulo, autor))
         self.conexao.commit()
-        print(f"Aluno {nome} inserido com sucesso!") 
+        print(f"Livro '{titulo}' de {autor} inserido com sucesso!") 
 
-    def listar_alunos(self):
-        self.cursor.execute('SELECT * FROM alunos')
+    def listar_livros(self):
+        self.cursor.execute('SELECT * FROM Livros')
         livros = self.cursor.fetchall()
-        print("Lista de alunos: ")
+        if not livros:
+            print("Nenhum livro cadastrado.")
+            return
+        print("Lista de livros:")
         for livro in livros:
-            print(f"ID : {livro[0]} - Nome: {livro[1]} - Idade:{livro[2]}")
+            print(f"ID: {livro[0]} - Título: {livro[1]} - Autor: {livro[2]}")
+
+    def limpar_tabela(self):
+        self.cursor.execute('DELETE FROM Livros')
+        self.cursor.execute('DELETE FROM sqlite_sequence WHERE name="Livros"') 
+        self.conexao.commit()
+        print("Todos os livros foram apagados.")
 
 def menu():
-    dao = AlunoDAO()
+    dao = LivroDAO()
     dao.criar_tabela()
 
     while True:
         print("1 - Inserir Livro")
         print("2 - Listar Livros")
         print("3 - Sair")
-        opcao = input("Escolha uma opção:")
-        if opcao =="1":
-         try:
-            nome = input("Digite o nome do Livro: ")
-            titulo = input("Digite o nome do titulo do livro: ")
-            autor = input("Digite o nome do autor: ")
+        print("4 - Apagar todos os livros")
+        opcao = input("Escolha uma opção: ")
 
-            dao.inserir_aluno()
-         except ValueError:
-           print("Digite um valor válido")
-           continue
+        if opcao == "1":
+            titulo = input("Digite o título do livro: ")
+            autor = input("Digite o nome do autor: ")
+            dao.inserir_livro(titulo, autor)
         elif opcao == "2":
-            dao.listar_alunos()
+            dao.listar_livros()
         elif opcao == "3":
             dao.fechar()
             print("Encerrando...")
             break
+        elif opcao == "4":
+            confirmar = input("Tem certeza que quer apagar todos os livros? (s/n): ")
+            if confirmar.lower() == "s":
+                dao.limpar_tabela()
+            else:
+                print("Ação cancelada.")
         else:
-            print("Digite um valor entre 1 a 3\n")
-            
+            print("Digite um valor entre 1 a 4.\n")
+
 menu()
 '''
 Exercício 2 : Cadastro de Cursos com Nível
