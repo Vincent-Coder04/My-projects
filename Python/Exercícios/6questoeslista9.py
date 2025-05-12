@@ -168,7 +168,7 @@ def menu():
                 print("Preço inválido.")
         elif opcao == "4":
             dao.fechar()
-            print("Encerrando...")
+            print("Encerrando...\n")
             break
         else:
             print("Digite um valor entre 1 e 4.")
@@ -186,6 +186,74 @@ Crie uma classe VisitanteDAO com:
  Método remover_visitante(nome) que deleta um visitante pelo nome
  Listagem dos visitantes ainda presentes
 '''
+import sqlite3
+
+class ConexaoBanco:
+    def __init__(self, nome_banco="Visitantes.db"):
+        self.conexao = sqlite3.connect(nome_banco)
+        self.cursor = self.conexao.cursor()
+
+    def fechar(self):
+        self.conexao.close()
+
+class VisitantesDAO(ConexaoBanco):
+    def criar_tabela(self):
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS Visitantes (
+                nome TEXT
+            )
+        ''')
+        self.conexao.commit()
+
+    def inserir_visitante(self, nome):
+        self.cursor.execute('''
+            INSERT INTO Visitantes (nome) VALUES (?)
+        ''', (nome))
+        self.conexao.commit()
+        print(f"Visitante {nome} inserido com sucesso!") 
+
+    def listar_visitantes(self):
+        self.cursor.execute('SELECT * FROM Visitantes')
+        visitantes = self.cursor.fetchall()
+        print("Lista de visitantes: ")
+        for visitante in visitantes:
+            print(f"Nome : {visitante[0]}")
+        if not visitantes:
+            print("Nenhuma Visitante cadastrado.")
+            return
+    
+    def deletar_visitante(self, nome):
+        self.cursor.execute('DELETE FROM Visitantes WHERE nome = ?', (nome,))
+        self.conexao.commit()
+        print(f"Visitante {nome} foi removido com sucesso")
+
+def menu():
+    dao = VisitantesDAO()
+    dao.criar_tabela()
+
+    while True:
+        print("1 - Inserir Visitante")
+        print("2 - Listar Visitantes")
+        print("3 - Deletar Visitante")
+        print("4 - Sair")
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+                nome = input("Digite o nome do visitante: ")
+                dao.inserir_visitante(nome)
+        elif opcao == "2":
+            dao.listar_visitantes()
+        elif opcao == "3":
+            nome = input("Digite o nome do visitante para deletar: ")
+            dao.deletar_visitante(nome)
+        elif opcao == "4":
+            dao.fechar()
+            print("Encerrando...")
+            break
+        else:
+            print("Digite um valor entre 1 e 4.")
+
+menu()
 '''
 4. [Clube de Leitura : Buscar Livro pelo Título]
 Contexto: O Clube de Leitura do SENAC tem uma base com livros e autores. Os
