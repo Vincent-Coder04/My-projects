@@ -232,7 +232,7 @@ def menu():
     dao.criar_tabela()
 
     while True:
-        print("1 - Inserir Visitante")
+        print("\n1 - Inserir Visitante")
         print("2 - Listar Visitantes")
         print("3 - Deletar Visitante")
         print("4 - Sair")
@@ -265,6 +265,78 @@ Crie uma classe LivroDAO com:
  Inserção de livros via input
  Método buscar_por_titulo(titulo) para buscar e exibir um livro específico
 '''
+import sqlite3
+
+class ConexaoBanco:
+    def __init__(self, nome_banco="Titulos.db"):
+        self.conexao = sqlite3.connect(nome_banco)
+        self.cursor = self.conexao.cursor()
+
+    def fechar(self):
+        self.conexao.close()
+
+class TitulosDAO(ConexaoBanco):
+    def criar_tabela(self):
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS Titulos(
+                id INTEGER PRIMARY KEY,
+                titulo TEXT NOT NULL,
+                autor TEXT NOT NULL
+            )
+        ''')
+        self.conexao.commit()
+
+    def inserir_livro(self, titulo, autor):
+        self.cursor.execute('''
+            INSERT INTO Titulos (titulo, autor) VALUES (?, ?)
+        ''', (titulo, autor))
+        self.conexao.commit()
+        print(f"Livro '{titulo}' do autor '{autor}' inserido com sucesso!") 
+
+    def lista_de_titulos(self):
+        self.cursor.execute('SELECT * FROM Titulos')
+        titulos = self.cursor.fetchall()
+        print("\nLista de Livros:")
+        for titulo in titulos:
+            print(f"ID: {titulo[0]} - Título: {titulo[1]} - Autor: {titulo[2]}")
+    
+    def buscar_por_titulo(self, titulo):
+        self.cursor.execute('SELECT * FROM Titulos WHERE titulo = ?', (titulo,))
+        resultado = self.cursor.fetchall()
+        if resultado:
+            for titulo in resultado:
+                print(f"Encontrado: ID {titulo[0]} - Título {titulo[1]} - Autor {titulo[2]}")
+        else:
+            print("Livro não encontrado")
+
+def menu():
+    dao = TitulosDAO()
+    dao.criar_tabela()
+
+    while True:
+        print("\n1 - Inserir Livro")
+        print("2 - Listar Livros")
+        print("3 - Buscar por título")
+        print("4 - Sair")
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+            titulo = input("Digite o Título do Livro: ")
+            autor = input("Digite o nome do autor/a: ")
+            dao.inserir_livro(titulo, autor)
+        elif opcao == "2":
+            dao.lista_de_titulos()
+        elif opcao == "3":
+            nome = input("Digite o título para buscar: ")
+            dao.buscar_por_titulo(nome)
+        elif opcao == "4":
+            dao.fechar()
+            print("Encerrando...")
+            break
+        else:
+            print("Digite um valor entre 1 e 4.")
+
+menu()
 '''
 5. [Loja de Camisetas : Atualizando o Estoque]
 Contexto: A loja fictícia &quot;CodeWear&quot; quer manter o controle de estoque das camisetas.
