@@ -8,10 +8,9 @@ def verificar_temperatura(temperatura):
 
 while True: 
     entrada = input("Digite a temperatura em Celsius (exemplo: 20°C): ")
-
+    
     if entrada.endswith("°C") or entrada.endswith("C"):
         try:
-            
             temperatura = float(entrada[:-2])  
             verificar_temperatura(temperatura)
             break  

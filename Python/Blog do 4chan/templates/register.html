@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="C:\Users\Senac\Downloads\Python\Blog do 4chan\static\4chan.png" type="image/png">
+    <title>Registrar</title>
+</head>
+<body>
+    <h2>Cadastro do Usuário</h2>
+    <form method="POSt">
+    Nome: <input type="text" name="nome"  required><br>
+    CPF: <input type="text" name="cpf" required><br>
+    Email: <input type="email" name="email" required><br>
+    Senha: <input type="password" name="senha" required><br><br>
+    <button type="submit">Registrar</button>
+    </form>
+    <a href="{{url_for('login')}}">Já tem conta? faça login!</a>
+</body>
+</html>

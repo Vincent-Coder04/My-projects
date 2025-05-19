@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="C:\Users\Senac\Downloads\Python\Blog do 4chan\static\4chan.png" type="image/png">
+    <title>New Post</title>
+</head>
+<body>
+    <h2>Criar Novo Post</h2>
+    <form method="POST">
+        Titulo: <input type="text" name="titulo" required><br>
+        Conteúdo: <br>
+        <textarea name="conteúdo" rows="5" cols="40"></textarea><br>
+        Imagem (opcional): <input type="file" name="imagem"><br><br>
+    </form>
+    <a href="{{url_for('dashboard')}}">Voltar</a>
+</body>
+</html>

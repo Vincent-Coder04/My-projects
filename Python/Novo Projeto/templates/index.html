@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='EU.png') }}" type="image/png">
+    <title>Lista de Tarefas</title>
+</head>
+<body>
+    <h1>Minha Lista de Tarefas</h1>
+    <form method="POST" action="/add">
+        <input type="text" name="descricao" placeholder="Digite uma nova tarefa..." required>
+        <button type="submit">Adicionar</button>
+    </form>
+    <ul>
+        {% for tarefa in tarefas %}
+        <li>
+            {{ tarefa.descricao }}
+            <a href="/delete/{{ tarefa.id }}">[Remover]</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

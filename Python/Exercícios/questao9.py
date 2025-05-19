@@ -22,9 +22,12 @@ sacar(valor)
 '''
 
 def caixa_eletronico():
-      valor = int(input("Digite o valor que será sacado(mútiplo de 10)"))
-
-      if valor % 10 !=0:
+      try:
+       valor = int(input("Digite o valor que será sacado(mútiplo de 10): "))
+      except ValueError:
+          print("Digite um valor válido")
+          
+      if valor % 10 != 0:
          print("Valor inválido. O valor deve ser mútiplo de 10")
          return
       else:

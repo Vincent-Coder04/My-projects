@@ -7,6 +7,6 @@ def aplicar_desconto():
         preco_com_desconto = preco - desconto  
         print(f"Desconto aplicado de R${desconto:.2f}. O valor final é R${preco_com_desconto:.2f}.")
     else:
-        print(f"Produto sem desconto. O valor é R${preco}.")
+        print(f"Produto sem desconto. O valor é R${preco:.2f}.")
 
 aplicar_desconto()
