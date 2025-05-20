@@ -1,6 +1,6 @@
 valores = []
 for i in range(4):
-    valor = float(input(f"Digite o valor da compra {i}: R$ "))
+    valor = float(input(f"Digite o valor da compra {i + 1}: R$ "))
     valores.append(valor)
 
 total = sum(valores)

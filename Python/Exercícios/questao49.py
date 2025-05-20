@@ -12,6 +12,3 @@ def sussypussy():
     
 southamerica()
 sussypussy()
-class carro():
-    def skibidi():
-        input("Skibidi aqui")

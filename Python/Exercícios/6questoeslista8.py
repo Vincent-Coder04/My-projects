@@ -133,9 +133,9 @@ class CursosDAO(ConexaoBanco):
         self.cursor.execute(f'SELECT * FROM {tabela}')
         cursos = self.cursor.fetchall()
         if not cursos:
-            print(f"Nenhum curso encontrado na tabela {tabela}.")
+            print(f"Nenhum curso encontrado na em {tabela}.")
         else:
-            print(f"Cursos na tabela {tabela}:")
+            print(f"Cursos Ofertados em: {tabela}:")
             for curso in cursos:
                 print(f"ID: {curso[0]} - Nome: {curso[1]}")
 
@@ -247,7 +247,7 @@ def menu():
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
-            nome = input("Digite o nome do Professor: ")
+            nome = input("Digite o nome do Professor/a: ")
             disciplina = input("Digite o nome da disciplina: ")
             dao.inserir_professores(nome, disciplina)
         elif opcao == "2":
@@ -364,12 +364,13 @@ especie TEXT
 Pergunta:
 Quais dois erros ou problemas você consegue identificar nesse código?
 (Dica: pense na estrutura da tabela e na classe)
-R:A classe AnimalDAO não está vinculada a nenhuma classe que tem as propriedades de bancos de dados, como ConexaoBanco, não tem o IF NOT EXIST que é importante para garantir uma tabela segura e evite erros.
+R:A estrutura da tabela está desalinhada e self.cursor não foi previamente atribuido.
 '''
 '''
 Exercício 6 : Identifique o erro
 Descrição:
-Veja o código abaixo e diga por que ele falha: Ele falha porque não usa a estrutura adequada para que o INSERT funcione
-Pergunta:
-O que precisa ser corrigido nessa linha para que o comando funcione: Não deu :(
+self.cursor.execute(&quot;INSERT INTO alunos (nome, idade) VALUES (?, ?)&quot;,
+&quot;Carlos&quot;, 18)
+Veja o código abaixo e diga por que ele falha: R = ele não usa tupula, não separando os argumentos.
+O que precisa ser corrigido nessa linha para que o comando funcione: self.cursor.execute("INSERT INTO alunos (nome, idade) VALUES (?, ?)", ("Carlos", 18))
 '''

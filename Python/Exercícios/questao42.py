@@ -11,10 +11,8 @@ def pares():
             except ValueError:
                 print("Valor inválido! Por favor, digite um número inteiro.")
     
-    soma = sum(oi)
-    print(f"A soma dos números é: {soma}")
+    soma = sum(num for num in oi if num % 2 == 0)
+    print(f"A soma dos números pares é: {soma}")
 
 pares()
-
-
 

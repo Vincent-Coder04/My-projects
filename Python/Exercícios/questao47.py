@@ -15,11 +15,13 @@ def cursonoite():
         print(f"{index}. {curso}.")
 
 def intersecao_conjuntos():
-    cursos_comum = cursos_manha, cursos_noite
+    cursos_comum = cursos_manha & cursos_noite  # ou cursos_manha.intersection(cursos_noite)
     print("Cursos ofertados na manhã e noite:")
     if cursos_comum:
         for index, curso in enumerate(sorted(cursos_comum), start=1):
             print(f"{index}. {curso}.")
+    else:
+        print("Nenhum curso é ofertado nos dois períodos.")
 
 def menu():
     conjuntos()

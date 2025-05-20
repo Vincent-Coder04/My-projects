@@ -1,15 +1,18 @@
-from datetime import datetime
+from statistics import mean, median, mode
 
-data_str = input("Digite uma data (ex: 20/10/2025): ")
+entrada = input("Digite uma lista de números separados por vírgula: ")
 
 try:
-    data = datetime.strptime(data_str, "%d/%m/%Y")
-    dias_semana = ["segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado", "domingo"]
-    dia_semana = dias_semana[data.weekday()]
-    print(f"A data {data_str} cai em uma {dia_semana}.")
-    if dia_semana in ("domingo", "sábado"):
-        print(f"A data {data_str} cai em um {dia_semana}.")
-    
+    numeros = [float(num.strip()) for num in entrada.split(",")]
+
+    media = mean(numeros)
+    mediana = median(numeros)
+    moda = mode(numeros)  
+
+    print(f"Média: {media}")
+    print(f"Mediana: {mediana}")
+    print(f"Moda: {moda}")
+
 except ValueError:
-    print("Formato de data inválido. Use o formato DD/MM/AAAA.")
+    print("Erro: Digite apenas números.")
     

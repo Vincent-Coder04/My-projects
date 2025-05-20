@@ -8,3 +8,6 @@ for i in range(3):
 print("\nProdutos cadastrados:")
 for nome, preco in produtos.items():
     print(f"{nome}: R$ {preco:.2f}")
+
+media = sum(produtos.values()) / len(produtos)
+print(f"\nA média dos preços é: R$ {media:.2f}")

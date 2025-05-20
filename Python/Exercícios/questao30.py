@@ -1,33 +1,6 @@
-'''
-vogais = "aeiouAEIOU"
-consoantes = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ"
-
 for i in range(1, 4): 
     palavra = input(f"Digite a {i}ª palavra: ")
-    
-    num_vogais = 0
-    num_consoantes = 0
-    num_espacos = 0
-
-    for letra in palavra:
-        if letra in vogais:
-            num_vogais += 1
-        elif letra in consoantes:
-            num_consoantes += 1
-        elif letra == " ":
-            num_espacos += 1
-        
-
-    print(f"--- Resultado para a palavra {i} ---")
-    print(f"Palavra: {palavra}")
-    print(f"Número de vogais: {num_vogais}")
-    print(f"Número de consoantes: {num_consoantes}")
-    print(f"Número de espaços: {num_espacos}")
-'''
-    
-for i in range(1, 4): 
-    palavra = input(f"Digite a {i}ª palavra: ")
-    
+    ''
     num_vogais = 0
     num_consoantes = 0
     num_espacos = 0

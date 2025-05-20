@@ -3,7 +3,7 @@ def jogo_tigrinho():
     numero_secreto = 7
     tentativas = 3 
 
-    print("Tente adivinhar o número ntre 1 a 10!")
+    print("Tente adivinhar o número entre 1 a 10!")
 
     for i in range(tentativas):
         palpite = int(input("Digite o seu palpite: "))

@@ -1,5 +1,5 @@
 def verificar_status(nota):
-    if 7 <= nota < 10.1:
+    if 7 <= nota < 10:
         print("Aprovado")
     elif 5 <= nota < 7:
         print("Recuperação")
@@ -10,7 +10,7 @@ while True:
     try:
         
         nota = float(input("Digite a nota (0 a 10): "))
-        
+
         if 0 <= nota <= 10:
             verificar_status(nota)  
             break  

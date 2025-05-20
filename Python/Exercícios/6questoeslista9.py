@@ -232,7 +232,7 @@ def menu():
     dao.criar_tabela()
 
     while True:
-        print("\n1 - Inserir Visitante")
+        print("1 - Inserir Visitante")
         print("2 - Listar Visitantes")
         print("3 - Deletar Visitante")
         print("4 - Sair")
@@ -351,6 +351,7 @@ Depois, implemente:
  Método atualizar_quantidade(modelo, nova_qtd)
  Método de listagem geral
 '''
+
 '''
 6. [Ranking de Alunos no Campeonato de Xadrez]
 Contexto: Após um campeonato de xadrez interno, os alunos querem registrar os
