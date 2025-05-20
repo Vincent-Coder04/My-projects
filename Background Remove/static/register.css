@@ -1,0 +1,26 @@
+body{
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #c2c2c2;
+
+}
+
+#cpf{
+    left: 80px;
+    position: absolute;
+}
+
+#email{
+    position: absolute;
+    left: 80px;
+}
+
+#senha{
+    position: absolute;
+    left: 80px;
+}
+
+#nome{
+    position: absolute;
+    left: 80px;
+}

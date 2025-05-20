@@ -1,0 +1,16 @@
+body{
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #c2c2c2;
+
+}
+
+#senha{
+    position: absolute;
+    left: 77px;
+}
+
+#email{
+    position: absolute;
+    left: 77px;
+}

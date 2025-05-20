@@ -1,0 +1,18 @@
+body{
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #c2c2c2;
+
+}
+
+#register{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+#login{
+    position: absolute;
+    top: 50%;
+    left: 47%;
+}
