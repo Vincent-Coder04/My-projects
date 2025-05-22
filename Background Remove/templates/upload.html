@@ -5,10 +5,18 @@
     <title>Upload</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='upload.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Enviar Imagem</h1>
-
+    <div class="aquarectangle">
+        <a href="">
+        <img id="icon" src="{{ url_for('static', filename='logo.png') }}" alt="logo">
+        </a>
+        <p id="title">Background Remover</p>
+        </div>
+        <div id="everthing">
+     <h1>Enviar Imagem</h1>
+    <div></div>
     {% if mensagem %}
         <p >{{ mensagem }}</p>
     {% endif %}
@@ -18,8 +26,9 @@
     {% endif %}
 
     <form action="/upload_arquivo" method="POST" enctype="multipart/form-data">
-        <input type="file" name="arquivo" accept=".jpg,.jpeg,.png">
-        <button type="submit">Enviar</button>
+        <input id="escolhe" type="file" name="arquivo" accept=".jpg,.jpeg,.png">
+        <button id="enviar" type="submit">Enviar</button>
     </form>
+      </div>
 </body>
 </html>

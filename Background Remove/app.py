@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__) 
 app.config['SECRET_KEY'] = 'chave_verde' 
-app.config['UPLOAD_FOLDER'] = 'static/uploads' 
+app.config['UPLOAD_FOLDER'] = 'static/Images' 
 
 EXTENSOES = {'png', 'jpg', 'jpeg', 'gif'} 
 
@@ -117,7 +117,7 @@ def upload_arquivo():
     nome_arquivo = secure_filename(arquivo.filename)
     caminho = os.path.join(app.config['UPLOAD_FOLDER'], nome_arquivo)
     arquivo.save(caminho)
-
+    
     mensagem = f"Arquivo '{nome_arquivo}' salvo com sucesso!"
     mensagem2 = "O arquivo sera mandado sem fundo para o seu Email o mais rápido possível"
     return redirect(url_for('upload', msg=mensagem, msg2=mensagem2))

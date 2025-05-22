@@ -5,9 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Background Remove</title>
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
+    <div class="aquarectangle">
+        <img id="icon" src="{{ url_for('static', filename='logo.png') }}" alt="logo">
+        <p id="title">Background Remover</p>
+        </div>
     <a id="login" href="{{ url_for('login') }}">Login</a>
     <a id="register" href="{{ url_for('register') }}">Registrar</a>
 </body>
