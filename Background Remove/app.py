@@ -7,9 +7,8 @@ from werkzeug.utils import secure_filename #Biblioteca que garante nomes seguros
 # ---------------------- Configuração Inicial do App ------------------------------------
 
 app = Flask(__name__) #Criação da aplicação Flask
-app.config['SECRET_KEY'] = 'chave_mauri' #Chave secreta utilizada nas sessões
+app.config['SECRET_KEY'] = 'chave_verde' #Chave secreta utilizada nas sessões
 app.config['UPLOAD_FOLDER'] = 'static/uploads' #Pasta para onde imagens serão salvas
-app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024 #Limite do tamanho de uploads para 2mb
 
 EXTENSOES = {'png', 'jpg', 'jpeg', 'gif'} #Extensões permitidas
 
@@ -54,20 +53,9 @@ def inicializar_banco():
                    senha TEXT NOT NULL
             );
         ''') 
-        db.execute('''
-            CREATE TABLE IF NOT EXISTS posts(
-                   id INTEGER PRIMARY KEY AUTOINCREMENT,
-                   titulo TEXT NOT NULL,
-                   conteudo TEXT NOT NULL,
-                   imagem TEXT,
-                   autor_id INTEGER NOT NULL,
-                   FOREIGN KEY (autor_id) REFERENCES usuarios (id)
-                );
-            ''')
         db.commit()
 
 # ---------------------- Rota Principal (Index) ------------------------------------
-
 @app.route('/')
 def index():
     # Exibir todos os posts públicos na página inicial
@@ -114,47 +102,35 @@ def login():
         if usuario:
             session['usuario_id'] = usuario['id']
             session['usuario_nome'] = usuario['nome']
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('upload'))
         else:
             return "Login inválido."
     return render_template('login.html')
-
-# ---------------------- Painel do Usuário ------------------------------------
-@app.route('/dashboard')
-def dashboard():
-#Exibir os posts do usuário logado.
+# ---------------------- Rota para Criar upload I ------------------------------------
+@app.route('/upload')
+def upload():
     if 'usuario_id' not in session:
         return redirect(url_for('login'))
     
-    db = get_db()
-    posts = db.execute('SELECT * FROM posts WHERE autor_id=?', (session['usuario_id'],)).fetchall()
-    return render_template('dashboard.html', posts=posts)
+    usuario_nome = session.get('usuario_nome')
+    # Aqui você pode buscar mais dados no banco, se quiser
 
-# ---------------------- Rota para Criar Novo Post ------------------------------------
-@app.route('/new_post', methods=['GET', 'POST'])
-def new_post():
-    #Permitir que o usuário logado crie um novo post com ou sem imagem
+    return render_template('upload.html', nome=usuario_nome)
+# ---------------------- Rota para Criar upload II------------------------------------
+@app.route('/upload_arquivo', methods=['POST'])
+def upload_arquivo():
     if 'usuario_id' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('login'))  # Se quiser manter login obrigatório
     
-    if request.method == 'POST':
-        titulo = request.form['titulo']
-        conteudo = request.form['conteudo']
-        imagem = request.files['imagem']
+    arquivo = request.files.get('arquivo')
+    if not arquivo or arquivo.filename == '':
+        return "Nenhum arquivo enviado."
 
-        nome_arquivo = None
-        if imagem and extensao_valida(imagem.filename):
-            nome_arquivo = secure_filename(imagem.filename)
-            imagem.save(os.path.join(app.config['UPLOAD_FOLDER'], nome_arquivo))
+    nome_arquivo = secure_filename(arquivo.filename)
+    caminho = os.path.join(app.config['UPLOAD_FOLDER'], nome_arquivo)
+    arquivo.save(caminho)
 
-        db = get_db()
-        db.execute('INSERT INTO posts (titulo, conteudo, imagem, autor_id) VALUES (?, ?, ?, ?)', (titulo, conteudo, nome_arquivo, session['usuario_id']))
-        db.commit()
-        return redirect(url_for('dashboard'))
-    
-    return render_template('new_post.html')
-
-# ---------------------- Rota para Logout ------------------------------------    
+    return f"Arquivo '{nome_arquivo}' salvo com sucesso!"    
 @app.route('/logout')    
 def logout():
     #Remove o usuário da sessão atual.
@@ -165,5 +141,5 @@ def logout():
 if __name__ == '__main__':
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True) # Cria a pasta de uploads se ela não existir
     inicializar_banco() # Garante que o banco e tabelas sejam criados
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
 
