@@ -24,3 +24,16 @@ body{
     position: absolute;
     left: 80px;
 }
+
+#senha2{
+    position: absolute;
+    left: 154px;
+    top: 20.5%;
+    width: 88px;
+}
+
+#label{
+    position: absolute;
+    top: 20.8%;
+}
+

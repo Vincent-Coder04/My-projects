@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<link rel="stylesheet" href="{{ url_for('static', filename='upload.css') }}">
-<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 <head>
     <meta charset="UTF-8">
     <title>Upload</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='upload.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 </head>
 <body>
     <h1>Enviar Imagem</h1>
+
+    {% if mensagem %}
+        <p >{{ mensagem }}</p>
+    {% endif %}
+
+    {% if mensagem2 %}
+        <p >{{ mensagem2 }}</p>
+    {% endif %}
+
     <form action="/upload_arquivo" method="POST" enctype="multipart/form-data">
         <input type="file" name="arquivo" accept=".jpg,.jpeg,.png">
         <button type="submit">Enviar</button>

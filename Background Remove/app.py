@@ -1,48 +1,41 @@
-import os #Biblioteca para lidar com arquivos e diretórios
-import re #Biblioteca para validações com expressões regulares (senha)
-import sqlite3 #Biblioteca padrão do Python para banco de dados SQLite
-from flask import Flask, render_template, request, redirect, url_for, session, g #Bibliotecas importantes do Flask
-from werkzeug.utils import secure_filename #Biblioteca que garante nomes seguros para arquivos enviados
+import os 
+import re 
+import sqlite3 
+from flask import Flask, render_template, request, redirect, url_for, session, g 
+from werkzeug.utils import secure_filename 
 
 # ---------------------- Configuração Inicial do App ------------------------------------
 
-app = Flask(__name__) #Criação da aplicação Flask
-app.config['SECRET_KEY'] = 'chave_verde' #Chave secreta utilizada nas sessões
-app.config['UPLOAD_FOLDER'] = 'static/uploads' #Pasta para onde imagens serão salvas
+app = Flask(__name__) 
+app.config['SECRET_KEY'] = 'chave_verde' 
+app.config['UPLOAD_FOLDER'] = 'static/uploads' 
 
-EXTENSOES = {'png', 'jpg', 'jpeg', 'gif'} #Extensões permitidas
+EXTENSOES = {'png', 'jpg', 'jpeg', 'gif'} 
 
-DATABASE = 'users.db' #Nome do banco SQLite
+DATABASE = 'users.db' 
 
 # ---------------------- Função para Conectar o Banco ------------------------------------
 
 def get_db():
-    # Estabelecer e retornar a conexão com o banco de dados SQLite.
     if 'db' not in g:
         g.db = sqlite3.connect(DATABASE)
-        g.db.row_factory = sqlite3.Row #Permite acessar os dados como dicionario (ex: linha['email'])
+        g.db.row_factory = sqlite3.Row 
     return g.db
 
-@app.teardown_appcontext #Automatiza a execução após cada requisição por conta desse decorador
+@app.teardown_appcontext 
 def close_db(error):
-    #Fechar a conexão com o banco após cada requisição
-    #Esse 'g' é um objeto especial do Flask usado para armazenar dados globais da aplicação durante uma requisição (como variáveis que você quer acessar em vários lugares durante uma requisição HTTP).
-    db = g.pop('db', None) #Remove a conexão com o banco de g e armazena em db. Se não existir, retorna None.
-    if db is not None: #Se havia uma conexão, ela é fechada 
+    db = g.pop('db', None) 
+    if db is not None: 
         db.close()
 
 # ---------------------- Função Auxiliar para Verificar Extensão da Imagem ------------------------------------
 
 def extensao_valida(nome_arquivo):
-    # Verificar se a extensão do arquivo enviado é uma das permitidas
-    # Verifica se o nome do arquivo possui um ponto
-    #'nome_arquivo.rsplit('.', 1): separa o nome do arquivo da extensão, da direita para a esquerda, uma vez só'
     return '.' in nome_arquivo and nome_arquivo.rsplit('.', 1)[1].lower() in EXTENSOES
 
 # ---------------------- Criação das Tabelas (executar uma única vez) ------------------------------------
 
 def inicializar_banco():
-    #Criar as tabelas do banco caso não existam
     with app.app_context():
         db = get_db()
         db.execute('''
@@ -58,28 +51,23 @@ def inicializar_banco():
 # ---------------------- Rota Principal (Index) ------------------------------------
 @app.route('/')
 def index():
-    # Exibir todos os posts públicos na página inicial
-    db = get_db()
-    posts = db.execute('''
-        SELECT p.titulo, p.conteudo, p.imagem, u.nome 
-        FROM posts p
-        JOIN usuarios u ON p.autor_id = u.id
-    ''').fetchall()
-    return render_template('index.html', posts=posts)
+    return render_template('index.html')
 
 # ---------------------- Rota Registro de Usuário (register) ------------------------------------
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    #Exibir o formulário de cadastro e processar os dados enviados.
     if request.method == 'POST':
         nome = request.form['nome']
         email = request.form['email']
         senha = request.form['senha']
+        senha2 = request.form['senha2']
 
-        #Validar se a senha digitada possui no mínimo 8 caracteres, 1 maiuscula, 1 nímero e 1 símbolo
         if len(senha) < 8:
             return "Senha fraca. Requisitos: 8+ caracteres, 1 maiuscula, 1 número e 1 símbolo."
+        
+        if senha != senha2:
+            return render_template('register.html', erro="As senhas não coincidem.")
         
         db = get_db()
         try:
@@ -93,7 +81,6 @@ def register():
 # ---------------------- Rota de Login (login) ------------------------------------
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    #Exibir e processar o formulário de login
     if request.method == 'POST':
         email = request.form['email']
         senha = request.form['senha']
@@ -113,33 +100,31 @@ def upload():
         return redirect(url_for('login'))
     
     usuario_nome = session.get('usuario_nome')
-    # Aqui você pode buscar mais dados no banco, se quiser
+    mensagem = request.args.get('msg')  
+    mensagem2 = request.args.get('msg2') 
 
-    return render_template('upload.html', nome=usuario_nome)
+    return render_template('upload.html', nome=usuario_nome, mensagem=mensagem, mensagem2=mensagem2)
 # ---------------------- Rota para Criar upload II------------------------------------
 @app.route('/upload_arquivo', methods=['POST'])
 def upload_arquivo():
     if 'usuario_id' not in session:
-        return redirect(url_for('login'))  # Se quiser manter login obrigatório
-    
+        return redirect(url_for('login'))
+
     arquivo = request.files.get('arquivo')
     if not arquivo or arquivo.filename == '':
-        return "Nenhum arquivo enviado."
+        return redirect(url_for('upload', msg='Nenhum arquivo enviado.'))
 
     nome_arquivo = secure_filename(arquivo.filename)
     caminho = os.path.join(app.config['UPLOAD_FOLDER'], nome_arquivo)
     arquivo.save(caminho)
 
-    return f"Arquivo '{nome_arquivo}' salvo com sucesso!"    
-@app.route('/logout')    
-def logout():
-    #Remove o usuário da sessão atual.
-    session.clear()
-    return redirect(url_for('index'))
+    mensagem = f"Arquivo '{nome_arquivo}' salvo com sucesso!"
+    mensagem2 = "O arquivo sera mandado sem fundo para o seu Email o mais rápido possível"
+    return redirect(url_for('upload', msg=mensagem, msg2=mensagem2))
 
 # ---------------------- Execução Principal ------------------------------------
 if __name__ == '__main__':
-    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True) # Cria a pasta de uploads se ela não existir
-    inicializar_banco() # Garante que o banco e tabelas sejam criados
-    app.run(host='0.0.0.0', port=5000)
+    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True) 
+    inicializar_banco()
+    app.run(debug=True, host='0.0.0.0', port=5000)
 
