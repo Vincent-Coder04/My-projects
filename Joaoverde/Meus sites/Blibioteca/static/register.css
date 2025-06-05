@@ -1,0 +1,5 @@
+body{
+  background-image: url('imgs/horse.png');
+  background-size: cover;        
+  background-repeat: no-repeat;  
+}

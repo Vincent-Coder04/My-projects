@@ -1,0 +1,96 @@
+body{
+    background-image: url('imgs/horse.png');
+    background-size: cover;        
+    background-repeat: no-repeat;  
+}
+
+.botao_ingracado {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.15s ease-in-out;
+    position: relative;
+    transform: translate(35vw, 35vh); 
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    transform: translate(37vw,36vh);
+}
+
+.botao_ingracado:hover {
+    background-color: #2980b9;
+    transform: translate(37vw, 36vh);
+}
+  
+.botao_ingracado:active {
+    background-color: #bbe4ff;
+    transform: translate(37vw, 36vh) scale(0.95);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {  
+    border: 1px solid black;
+    padding: 12px;
+    background-color: #3498db; 
+    color: white; 
+    text-align: center;
+  }
+  
+  tbody tr:nth-child(even) td {
+    background-color: #2980b9; 
+  }
+
+#botao{
+    text-decoration: none; 
+}
+
+#oloquinhomeu {
+    padding: 20px;
+    background-color: bisque;
+    transform: translate(0vw, 35vh);
+}
+
+h1{
+    font-family: 'Rye';
+}
+
+#authentic{
+    width: 10vw;
+    height: 30vh;
+}
+
+#horsing{
+    transform: translate(20px);
+}
+
+#botao{
+    background-color: #3498db;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.15s ease-in-out;
+    position: relative;
+    transition: background-color 0.5s ease, transform 0.5s ease;
+    transform: translate(44vw, -10vh);
+}
+
+#botao:hover{
+    background-color: #2980b9;
+}
+
+a{
+    text-decoration: none;
+}
+
+#priquito{
+    transform: translate(65vw, -105vh);
+}
