@@ -1,0 +1,5 @@
+html, body{
+    background-image: url('imgs/Desert.png');
+    background-size: cover;        
+    background-repeat: no-repeat;  
+}
